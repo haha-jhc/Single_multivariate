@@ -15,19 +15,17 @@ def data_pre(min):
     # load_dataset
     # 时间序列做为标签
     if (min == 1):
-        dataframe = pd.read_csv(r'E:\data_time_mul\data_wdz_notime.csv', usecols=[3], engine='python',
-                                index_col=0)
+        dataframe = pd.read_csv(r'E:\data_time_mul\data_wdz_notime.csv', usecols=[3], engine='python')
         # dateframe = dataframe[:24 * 60 * 28]
         train_size = 24 * 60 * 21  # 1分钟
         test_size = 24 * 60 * 28
     elif (min == 5):
-        dataframe = pd.read_csv(r'E:\data_time_mul\data_wdz_notime_5min.csv', usecols=[3], engine='python',
-                                index_col=0)
+        dataframe = pd.read_csv(r'E:\data_time_mul\data_wdz_notime_5min.csv', usecols=[3], engine='python')
         # dateframe = dataframe[:24 * 12 * 28]
         train_size = 24 * 12 * 21  # 5分钟
         test_size = 24 * 60 * 28
     elif (min == 10):
-        pd.read_csv(r'E:\data_time_mul\data_wdz_notime_10min.csv', usecols=[3], engine='python', index_col=0)
+        pd.read_csv(r'E:\data_time_mul\data_wdz_notime_10min.csv', usecols=[3], engine='python')
         # dateframe = dataframe[:24 * 6 * 28]
         train_size = 24 * 6 * 21  # 10分钟
         test_size = 24 * 60 * 28
@@ -41,4 +39,4 @@ def data_pre(min):
     testX, testY = create_dataset(test, lock_back)
     trainX = np.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
     testX = np.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
-    return trainX,testX,trainY,testY,scaler
+    return trainX,testX,trainY,testY,scaler,train

@@ -6,7 +6,7 @@ from keras.layers import LSTM
 from sklearn.metrics import mean_squared_error
 from lstm_Single_pre import data_pre
 
-trainX,testX,trainY,testY,scaler=data_pre(1)
+trainX,testX,trainY,testY,scaler,train=data_pre(1)
 model=Sequential()
 model.add(LSTM(128,return_sequences=True,input_shape=(1,1)))
 model.add(Dropout(0.2))
@@ -20,12 +20,16 @@ model.save('model_1_singletime.h5')
 # model.save('model_5_singletime.h5')
 # model.save('model_10_singletime.h5')
 
-score =model.evaluate(trainX,trainY)
-print('Score:{}'.format(score))
+trainPredict =model.predict(trainX)
+testPredict =model.predict(testX)
+#数据反归一化
+trainPredict = scaler.inverse_transform(trainPredict)
+trainY = scaler.inverse_transform([trainY])
+testPredict = scaler.inverse_transform(testPredict)
+testY = scaler.inverse_transform([testY])
 
-yhat =model.predict(trainX)
-yhat = scaler.inverse_transform(yhat)
-y_test = scaler.inverse_transform(trainY)
-rmse = math.sqrt(mean_squared_error(y_test,yhat))
+trainScore=math.sqrt(mean_squared_error(trainY[0],trainPredict[:,0]))
+print('Train Score:%.6f RMSE'%(trainScore))
+testScore=math.sqrt(mean_squared_error(testY[0],testPredict[:,0]))
+print('Test Score:%.6f RMSE'%(testScore))
 
-print('Train RMSE:%.3f' % rmse)
