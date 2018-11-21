@@ -24,7 +24,6 @@ print('Test RMSE:%.3f' % rmse)
 plt.rcParams['figure.figsize'] = (20,6)
 plt.rcParams['font.sans-serif']=['SimHei']
 
-print("出图")
 label = ["dataset", "testPredict"]
 y_test_plt=y_test[ : 24 * 60 ]
 y_hat_plt=yhat[ : 24 * 60]
