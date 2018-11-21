@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
@@ -34,7 +33,6 @@ def data_pre(min):
     X_train, X_test,y_train, y_test = X[:train_size], X[train_size:test_size], Y[:train_size], Y[train_size:test_size]
     X_train = X_train.reshape((-1, 1, 3))
     X_test = X_test.reshape((-1, 1, 3))
-=======
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
@@ -70,5 +68,5 @@ def data_pre(min):
     X_train, X_test,y_train, y_test = X[:train_size], X[train_size:test_size], Y[:train_size], Y[train_size:test_size]
     X_train = X_train.reshape((-1, 1, 3))
     X_test = X_test.reshape((-1, 1, 3))
->>>>>>> origin/master
+
     return X_train,X_test,y_train,y_test,y_scale
