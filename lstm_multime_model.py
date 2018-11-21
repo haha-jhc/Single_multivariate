@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # _*_ coding: utf-8 _*_
 """
 LSTM prediction
@@ -33,7 +32,7 @@ yhat =model.predict(X_train)
 yhat = y_scale.inverse_transform(yhat)
 y_test = y_scale.inverse_transform(y_train)
 rmse = math.sqrt(mean_squared_error(y_test,yhat))
-=======
+
 # _*_ coding: utf-8 _*_
 """
 LSTM prediction
@@ -68,5 +67,5 @@ yhat =model.predict(X_train)
 yhat = y_scale.inverse_transform(yhat)
 y_test = y_scale.inverse_transform(y_train)
 rmse = math.sqrt(mean_squared_error(y_test,yhat))
->>>>>>> origin/master
+
 print('Train RMSE:%.3f' % rmse)
