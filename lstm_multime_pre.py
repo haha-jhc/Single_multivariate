@@ -15,10 +15,10 @@ def data_pre(min):
         train_size = 24 * 12 * 21 # 5分钟
         test_size = 24 * 60 * 28
     elif (min ==10):
-        pd.read_csv(r'E:\data_time_mul\data_wdz_notime_10min.csv', usecols=[0, 1, 2, 3], engine='python', index_col=0)
+        dataframe = pd.read_csv(r'E:\data_time_mul\data_wdz_notime_10min.csv', usecols=[0, 1, 2, 3], engine='python', index_col=0)
         # dateframe = dataframe[:24 * 6 * 28]
         train_size = 24 * 6 * 21 # 10分钟
-        test_size = 24 * 60 * 28
+        test_size = 24 * 6 * 28
 
     dataframe_shift = dataframe.shift(-1)
     label = dataframe_shift['YQL']

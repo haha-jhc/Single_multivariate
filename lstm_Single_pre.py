@@ -23,20 +23,21 @@ def data_pre(min):
         dataframe = pd.read_csv(r'E:\data_time_mul\data_wdz_notime_5min.csv', usecols=[3], engine='python')
         # dateframe = dataframe[:24 * 12 * 28]
         train_size = 24 * 12 * 21  # 5分钟
-        test_size = 24 * 60 * 28
+        test_size = 24 * 12 * 28
     elif (min == 10):
-        pd.read_csv(r'E:\data_time_mul\data_wdz_notime_10min.csv', usecols=[3], engine='python')
+        dataframe = pd.read_csv(r'E:\data_time_mul\data_wdz_notime_10min.csv', usecols=[3], engine='python')
         # dateframe = dataframe[:24 * 6 * 28]
         train_size = 24 * 6 * 21  # 10分钟
-        test_size = 24 * 60 * 28
+        test_size = 24 * 6 * 28
 
     # normalize the dataset
     scaler = MinMaxScaler(feature_range=(0, 1))
     dataset = scaler.fit_transform(dataframe)
-    train, test = dataset[0:train_size, :], dataset[train_size:test_size, :]
+    train, test = dataset[0:train_size,:], dataset[train_size:test_size,:]
+    # train = train[:train_size-1]
     lock_back = 1
     trainX, trainY = create_dataset(train, lock_back)
     testX, testY = create_dataset(test, lock_back)
     trainX = np.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
     testX = np.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
-    return trainX,testX,trainY,testY,scaler,train
+    return trainX,testX,trainY,testY,scaler,train,test,train_size
